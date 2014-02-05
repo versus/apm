@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204140828) do
+ActiveRecord::Schema.define(version: 20140205160618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,5 +34,35 @@ ActiveRecord::Schema.define(version: 20140204140828) do
   end
 
   add_index "api_messages", ["status"], name: "index_api_messages_on_status", using: :btree
+
+  create_table "devices", force: true do |t|
+    t.string   "name"
+    t.string   "imei"
+    t.string   "device_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "devices", ["user_id"], name: "index_devices_on_user_id", using: :btree
+
+  create_table "user_applications", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "application_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_applications", ["user_id"], name: "index_user_applications_on_user_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
