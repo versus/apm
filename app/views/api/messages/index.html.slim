@@ -1,0 +1,22 @@
+h1 Listing api_messages
+
+table
+  tr
+    th Title
+    th Priority
+    th Status
+    th Message Errors
+
+  - @api_messages.each do |api_message|
+    tr
+      td = link_to api_message.title, api_message
+      //td = api_message.message
+      //td = api_message.sound
+      td = api_message.priority
+      //td = api_message.url
+      //td = api_message.url_title
+      td = api_message.status
+      td = api_message.message_errors
+br
+
+= link_to 'New Message', new_api_message_path

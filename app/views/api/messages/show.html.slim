@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @api_message.title
+p
+  strong Message:
+  = @api_message.message
+p
+  strong Sound:
+  = @api_message.sound
+p
+  strong Priority:
+  = @api_message.priority
+p
+  strong Url:
+  = @api_message.url
+p
+  strong Url title:
+  = @api_message.url_title
+p
+  strong Status:
+  = @api_message.status
+p
+  strong Errors:
+  = @api_message.errors
+
+= link_to 'Edit', edit_api_message_path(@api_message)
+'|
+= link_to 'Back', api_messages_path

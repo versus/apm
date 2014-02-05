@@ -1,0 +1,2 @@
+class CommingsoonController < ApplicationController
+end

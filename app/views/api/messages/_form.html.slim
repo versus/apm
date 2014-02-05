@@ -1,0 +1,33 @@
+= form_for @api_message do |f|
+  - if @api_message.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@api_message.errors.count, "error")} prohibited this api_message from being saved:"
+      ul
+        - @api_message.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :message
+    = f.text_area :message
+  .field
+    = f.label :sound
+    = f.number_field :sound
+  .field
+    = f.label :priority
+    = f.number_field :priority
+  .field
+    = f.label :url
+    = f.text_field :url
+  .field
+    = f.label :url_title
+    = f.text_field :url_title
+  .field
+    = f.label :status
+    = f.number_field :status
+  .field
+    = f.label :message_errors
+    = f.text_area :message_errors
+  .actions = f.submit 'Save'
