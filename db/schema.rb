@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205161030) do
+ActiveRecord::Schema.define(version: 20140207114523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140205161030) do
     t.datetime "updated_at"
     t.text     "message_errors"
     t.string   "app_pic",        default: "default.png", null: false
-    t.integer  "expire"
+    t.integer  "expire",         default: 0
     t.integer  "retry"
     t.string   "message_hash",                           null: false
     t.integer  "user_id"
@@ -38,20 +38,21 @@ ActiveRecord::Schema.define(version: 20140205161030) do
   add_index "api_messages", ["user_id"], name: "index_api_messages_on_user_id", using: :btree
 
   create_table "devices", force: true do |t|
-    t.string   "name"
-    t.string   "imei"
-    t.string   "device_token"
+    t.string   "name",                     null: false
+    t.string   "imei",                     null: false
+    t.string   "device_token",             null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",       default: 0, null: false
   end
 
   add_index "devices", ["user_id"], name: "index_devices_on_user_id", using: :btree
 
   create_table "user_applications", force: true do |t|
-    t.string   "name"
+    t.string   "name",              null: false
     t.text     "description"
-    t.string   "application_token"
+    t.string   "application_token", null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -60,11 +61,13 @@ ActiveRecord::Schema.define(version: 20140205161030) do
   add_index "user_applications", ["user_id"], name: "index_user_applications_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "username"
-    t.string   "password"
-    t.string   "token"
+    t.string   "username",                 null: false
+    t.string   "password",                 null: false
+    t.string   "token",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "quiet_from", default: "0", null: false
+    t.string   "quiet_to",   default: "0", null: false
   end
 
 end
